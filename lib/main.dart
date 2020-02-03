@@ -1,111 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  Color colorWhite = Colors.white;
-
-  @override
-  Widget build(BuildContext context) {
-    return new Material(
-        child: Center(
-            child: Container(
-      padding: EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 32.0),
-      color: Colors.teal, // <Color>[Colors.teal, Colors.greenAccent],
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/login_icon.png',
-              height: 100.0,
-              width: 100.0,
-              fit: BoxFit.contain,
-
-            ),
-            Column(
-              children: <Widget>[
-                Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 16.0),
-                    child: TextField(
-                        style: TextStyle(fontSize: 18.0, color: Colors.white),
-                        decoration: inputDeco
-                    )),
-                Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 14.0),
-                    child: TextField(
-                      style: TextStyle(fontSize: 18.0, color: Colors.white),
-                      decoration: inputDeco
-                    )),
-                Text(
-                  "Forgot Password?",
-                  style: TextStyle(
-                      fontSize: 12.0,
-                      color: Colors.white,
-                      fontStyle: FontStyle.normal),
-                ),
-              ],
-            ),
-            FlatButton(
-              child: Container(
-                color: Colors.white,
-                  width: 100.0,
-                  height: 40.0,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Login'
-                  ),
-                ],
-              )),
-              onPressed: null,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "or signup with",
-                  softWrap: true,
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton(
-                  icon: new Icon(Icons.add_circle, color: Colors.white),
-                  iconSize: 64.0,
-                  padding: EdgeInsets.all(4.0),
-                  onPressed: null,
-                ),
-                IconButton(
-                  icon: new Icon(Icons.add_circle, color: Colors.white),
-                  iconSize: 64.0,
-                  focusColor: Colors.white,
-                  padding: EdgeInsets.all(4.0),
-                  onPressed: null,
-                )
-              ],
-            ),
-          ]),
-    )));
-  }
-
-  final inputDeco = InputDecoration(
-        contentPadding: EdgeInsets.all(5.0),
-        prefixIcon: new Icon(Icons.mail, color: Colors.white),
-        hintText: 'Email',
-        hintStyle: TextStyle(color: Colors.white),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(3.0)),
-          borderSide: const BorderSide(color: Colors.white),
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.circular(10.0)
-        ));
-  }
-
-
 void main() {
   runApp(
     MaterialApp(
@@ -113,4 +8,120 @@ void main() {
       home: Login(),
     ),
   );
+}
+
+class Login extends StatelessWidget {
+  static Color colorWhite = Colors.white;
+
+  static Container buildInputSection(IconData icon, String hintText) {
+    return new Container(
+      margin: EdgeInsets.only(bottom: 14.0),
+      child: new TextField(
+        style: TextStyle(
+            fontSize: 18.0,
+            color: colorWhite
+        ),
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(5.0),
+          prefixIcon: new Icon(icon, color: colorWhite,),
+          hintText: hintText,
+          hintStyle: TextStyle(color: colorWhite),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(3.0)),
+              borderSide: BorderSide(color: colorWhite)
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              borderSide: BorderSide(color: colorWhite)
+          ),
+        ),
+      ),
+    );
+  }
+  Widget inputSection = new Container(
+    child: new Column(
+      children: [
+        buildInputSection(Icons.mail, 'Email'),
+        buildInputSection(Icons.lock, 'Password'),
+        new Text(
+          'Forgot Password?',
+          style: TextStyle(
+              fontSize: 12.0,
+              fontStyle: FontStyle.normal,
+              color: colorWhite
+          ),
+        )
+      ],
+    ),
+  );
+  Widget loginButton = new Container(
+    padding: EdgeInsets.all(3.0),
+    width: 120,
+    height: 50,
+    child: RaisedButton(
+      onPressed: (){},
+      color: colorWhite,
+      textColor: Colors.teal,
+      padding: EdgeInsets.all(0.0),
+      child: Row(
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          new Text('Login', style: TextStyle(fontSize: 16.0),),
+          new Icon(Icons.arrow_forward)
+        ],
+      ),
+    ),
+  );
+  static Container buildSignUpButton(IconData iconData){
+    return new Container(
+      child: new IconButton(
+        onPressed: (){},
+        icon: new Icon(Icons.add_circle, color: Colors.white),
+        iconSize: 64.0,
+        padding: EdgeInsets.all(4.0),
+      ),
+    );
+  }
+  Widget signupSection = new Container(
+    child: new Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          "or signup with",
+          softWrap: true,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        buildSignUpButton(Icons.add_circle),
+        buildSignUpButton(Icons.add_circle)
+      ],
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return new Material(
+        child: Center(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 32.0),
+              color: Colors.teal, // <Color>[Colors.teal, Colors.greenAccent],
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/images/login_icon.png',
+                      height: 100.0,
+                      width: 100.0,
+                      fit: BoxFit.contain,
+                    ),
+                    inputSection,
+                    loginButton,
+                    signupSection
+                  ]),
+            )));
+  }
+
 }
