@@ -100,6 +100,14 @@ class Login extends StatelessWidget {
       ],
     ),
   );
+  Widget image = new Container(
+    child: Image.asset(
+      'assets/images/login_icon.png',
+      height: 100.0,
+      width: 100.0,
+      fit: BoxFit.contain,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -111,12 +119,7 @@ class Login extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Image.asset(
-                      'assets/images/login_icon.png',
-                      height: 100.0,
-                      width: 100.0,
-                      fit: BoxFit.contain,
-                    ),
+                    image,
                     inputSection,
                     loginButton,
                     signupSection
