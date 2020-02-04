@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/ui/icons_new_icons.dart';
 
 void main() {
   runApp(
@@ -12,6 +13,7 @@ void main() {
 
 class Login extends StatelessWidget {
   static Color colorWhite = Colors.white;
+  static Color colorTeal = Colors.teal;
 
   static Container buildInputSection(IconData icon, String hintText) {
     return new Container(
@@ -73,12 +75,17 @@ class Login extends StatelessWidget {
       ),
     ),
   );
-  static Container buildSignUpButton(IconData iconData){
+  static Container buildSignUpButton(IconData iconData, Color color){
     return new Container(
+      color: colorWhite,
+      margin: EdgeInsets.fromLTRB(3.0, 0, 3.0, 0.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0)
+      ),
       child: new IconButton(
         onPressed: (){},
-        icon: new Icon(Icons.add_circle, color: Colors.white),
-        iconSize: 64.0,
+        icon: new Icon(iconData, color: color,),
+        iconSize: 20.0,
         padding: EdgeInsets.all(4.0),
       ),
     );
@@ -95,8 +102,8 @@ class Login extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        buildSignUpButton(Icons.add_circle),
-        buildSignUpButton(Icons.add_circle)
+        buildSignUpButton(IconsNew.facebook_circled, colorTeal),
+        buildSignUpButton(IconsNew.google, colorTeal)
       ],
     ),
   );
@@ -114,8 +121,18 @@ class Login extends StatelessWidget {
     return new Material(
         child: Center(
             child: Container(
+              height: 100.0,
               padding: EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 32.0),
-              color: Colors.teal, // <Color>[Colors.teal, Colors.greenAccent],
+              color: Colors.teal,
+             decoration: BoxDecoration(
+                gradient: new LinearGradient(
+                  colors: [Colors.teal, Colors.greenAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  //stops: [0.3, 1],
+
+                )
+              ),// <Color>
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -124,7 +141,9 @@ class Login extends StatelessWidget {
                     loginButton,
                     signupSection
                   ]),
-            )));
+            )
+        )
+    );
   }
 
 }
