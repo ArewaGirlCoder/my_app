@@ -56,31 +56,33 @@ class Login extends StatelessWidget {
       ],
     ),
   );
-  Widget loginButton = new Container(
-    padding: EdgeInsets.all(3.0),
-    width: 120,
-    height: 50,
-    child: RaisedButton(
+  Widget loginButton = new  RaisedButton(
       onPressed: (){},
       color: colorWhite,
+      shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(50.0)
+      ),
       textColor: Colors.teal,
       padding: EdgeInsets.all(0.0),
-      child: Row(
+      child: Container(
+        width: 120, height: 50, decoration: BoxDecoration( borderRadius: BorderRadius.circular(50.0)),
+          child: Row(
         //crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Text('Login', style: TextStyle(fontSize: 16.0),),
           new Icon(Icons.arrow_forward)
         ],
+      )
       ),
-    ),
-  );
+    );
+  //);
   static Container buildSignUpButton(IconData iconData, Color color){
     return new Container(
-      color: colorWhite,
       margin: EdgeInsets.fromLTRB(3.0, 0, 3.0, 0.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0)
+          color: colorWhite,
+          borderRadius: BorderRadius.circular(100.0)
       ),
       child: new IconButton(
         onPressed: (){},
@@ -121,9 +123,7 @@ class Login extends StatelessWidget {
     return new Material(
         child: Center(
             child: Container(
-              height: 100.0,
               padding: EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 32.0),
-              color: Colors.teal,
              decoration: BoxDecoration(
                 gradient: new LinearGradient(
                   colors: [Colors.teal, Colors.greenAccent],
